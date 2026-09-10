@@ -1,0 +1,7 @@
+{
+  "version": "0.2.0",
+  "supplementSha256": "e9f3e097e6838e6853f2339f1c590b9de5e7a675e9bc78fd5fba3094a43a67ea",
+  "restored": 30,
+  "originalSourceFilesVerified": 43,
+  "method": "Exact UTF-8 source restoration from checksum-verified release payloads"
+}
