@@ -5,10 +5,7 @@ on:
     paths: ['.bootstrap/**', '.github/workflows/recover-release.yml']
   workflow_dispatch:
 permissions:
-  contents: write
-concurrency:
-  group: recover-release
-  cancel-in-progress: false
+  contents: read
 jobs:
   recover:
     runs-on: ubuntu-latest
@@ -17,60 +14,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Verify and restore previously uploaded release
-        shell: bash
+      - name: Inspect interrupted transfer
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          import path from 'node:path';
-          import crypto from 'node:crypto';
           import zlib from 'node:zlib';
-          const expected = '88619243918627f6e13aa4bf500b2441c2b69f7c5e24da4a88e378157c23f587';
           const parts = fs.readdirSync('.bootstrap').filter(n => /^chunk-.*\.bin$/.test(n)).sort().map(n => fs.readFileSync('.bootstrap/' + n));
-          console.log('Recovery chunks:', parts.map((p, i) => ({i, bytes: p.length, prefix: p.subarray(0, 12).toString('hex')})));
-          let packed;
-          for (let mask = 1; mask < (1 << parts.length); mask++) {
-            const candidate = Buffer.concat(parts.filter((_, i) => mask & (1 << i)));
-            if (crypto.createHash('sha256').update(candidate).digest('hex') === expected) { packed = candidate; console.log('Verified release checksum; chunk mask:', mask); break; }
-          }
-          if (!packed) throw Error('No recovered chunk sequence matches the release SHA-256. No source was changed.');
-          let payload;
-          for (const [name, decode] of Object.entries({brotli: zlib.brotliDecompressSync, gzip: zlib.gunzipSync, deflate: zlib.inflateSync, raw: zlib.inflateRawSync, plain: x => x})) {
-            try { payload = JSON.parse(decode(packed).toString('utf8')); console.log('Payload compression:', name, 'root:', Array.isArray(payload) ? 'array' : Object.keys(payload).slice(0, 10)); break; } catch {}
-          }
-          if (!payload) throw Error('Verified payload is not a supported compressed JSON archive');
-          const files = payload.files ?? payload;
-          const entries = Array.isArray(files) ? files.map(e => Array.isArray(e) ? {path:e[0], content:e[1]} : e) : Object.entries(files).map(([p, v]) => typeof v === 'string' ? {path:p, content:v} : {path:p, ...v});
-          console.log('Archive entries:', entries.length, 'first entry fields:', Object.keys(entries[0]));
-          if (entries.length < 60) throw Error('Unexpected source file count');
-          let restored = 0;
-          for (const entry of entries) {
-            let p = entry.path ?? entry.name;
-            if (p?.startsWith('Orivane/')) p = p.slice(8);
-            if (!p || path.posix.isAbsolute(p) || p.includes('\\') || p.split('/').some(x => ['..', '.git'].includes(x)) || p === '.env') throw Error('Unsafe archive path: ' + p);
-            const content = entry.content ?? entry.contents ?? entry.data ?? entry.base64;
-            if (typeof content !== 'string') throw Error('Unsupported content for ' + p + ': ' + Object.keys(entry));
-            const encoding = entry.encoding ?? payload.encoding ?? (entry.base64 ? 'base64' : 'utf8');
-            const bytes = Buffer.from(content, encoding);
-            if (entry.sha256 && crypto.createHash('sha256').update(bytes).digest('hex') !== entry.sha256) throw Error('Source hash mismatch: ' + p);
-            if (p.startsWith('.github/')) { console.log('Workflow reserved for connector import:', p); p = '.bootstrap/recovered-workflows/' + p.slice(8); }
-            fs.mkdirSync(path.dirname(p), {recursive:true}); fs.writeFileSync(p, bytes); restored++;
-          }
-          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-          if (pkg.name !== 'orivane' || pkg.version !== '0.2.0') throw Error('Unexpected package identity');
-          fs.writeFileSync('.bootstrap/recovery-report.json', JSON.stringify({compressedSha256:expected, restored, package:pkg.name, version:pkg.version}, null, 2));
-          console.log('Restored', restored, 'files for', pkg.name, pkg.version);
+          const partial = zlib.brotliDecompressSync(Buffer.concat(parts), {finishFlush:zlib.constants.BROTLI_OPERATION_FLUSH}).toString('utf8');
+          console.log('Decoded bytes:', Buffer.byteLength(partial));
+          console.log('PAYLOAD PREFIX', JSON.stringify(partial.slice(0, 2000)));
+          console.log('PAYLOAD SUFFIX', JSON.stringify(partial.slice(-1200)));
+          fs.writeFileSync('/tmp/orivane-partial.json', partial);
           NODE
-      - name: Test restored source
-        run: npm test
-      - name: Rebuild standalone edition
-        run: npm run build
-      - name: Commit recovered source to main
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add --all
-          if ! git diff --cached --quiet; then
-            git commit -m 'Import verified Orivane 0.2 application, backend, tests and documentation'
-            git push origin HEAD:main
-          fi
