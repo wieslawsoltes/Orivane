@@ -1,0 +1,55 @@
+name: Verify Orivane
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+      - run: npm run build
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - run: npm run build
+      - name: Normal-origin browser, storage and transport checks
+        shell: bash
+        run: |
+          export CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')
+          node server/index.js >server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for n in {1..30}; do curl -fsS http://localhost:4173/api/ready && break || sleep 1; done
+          python tests/browser.py --url http://localhost:4173
+          python tests/browser-connected.py --url http://localhost:4173
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: browser-evidence, path: 'test-results/'}
+  containers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Build and test two API workers behind proxy
+        shell: bash
+        run: |
+          cp .env.example .env
+          export CLUSTER_SECRET=$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")
+          docker compose config --quiet
+          trap 'docker compose logs; docker compose down -v' EXIT
+          docker compose up --build --wait --wait-timeout 180
+          node tools/smoke.js --allow-write
