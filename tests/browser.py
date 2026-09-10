@@ -72,10 +72,14 @@ def main():
             passed('Boot, original editable discovery board, desktop rendering', env)
 
             action('templates')
+            page.get_by_role('dialog').wait_for(state='visible')
             assert page.get_by_role('dialog').count() == 1
             assert ev('document.querySelectorAll(".template-card").length') >= 10
             action('modal-close')
             action('boards')
+            # openBoards awaits real IndexedDB writes and reads before rendering.
+            # A click returning does not imply those transactions have completed.
+            page.get_by_role('dialog', name='A space for every idea.').wait_for(state='visible')
             assert page.get_by_role('dialog').count() == 1
             action('new-board')
             page.wait_for_function('orivane.doc.objects().length === 0')
