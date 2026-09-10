@@ -1,12 +1,9 @@
-node_modules/
 data/
-test-results/
-*.log
+node_modules/
 .env
+.env.local
+*.log
 .DS_Store
-*.sqlite
-*.sqlite-wal
-*.sqlite-shm
-__pycache__/
-backups/
 _site/
+__pycache__/
+*.pyc

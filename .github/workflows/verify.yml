@@ -17,6 +17,7 @@ jobs:
       - run: npm run build
   browser:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,13 +29,14 @@ jobs:
       - name: Normal-origin browser, storage and transport checks
         shell: bash
         run: |
-          export CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')
+          export CHROMIUM=$(python -c $'from playwright.sync_api import sync_playwright\nwith sync_playwright() as p:\n print(p.chromium.executable_path)')
           node server/index.js >server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           for n in {1..30}; do curl -fsS http://localhost:4173/api/ready && break || sleep 1; done
-          python tests/browser.py --url http://localhost:4173
-          python tests/browser-connected.py --url http://localhost:4173
+          curl -fsS http://localhost:4173/api/ready
+          python tools/run-browser-tests.py tests/browser.py --url http://localhost:4173
+          python tools/run-browser-tests.py tests/browser-connected.py --url http://localhost:4173
       - uses: actions/upload-artifact@v4
         if: always()
         with: {name: browser-evidence, path: 'test-results/'}
