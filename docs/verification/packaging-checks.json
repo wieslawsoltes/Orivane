@@ -1,0 +1,31 @@
+{
+  "release": "0.2.0",
+  "at": "2026-09-10T18:31:56.743638+00:00",
+  "javascriptSyntax": {
+    "result": "pass",
+    "files": 40
+  },
+  "internalMarkdownLinks": {
+    "result": "pass"
+  },
+  "yamlParse": {
+    "result": "pass",
+    "files": [
+      "compose.yaml",
+      ".github/workflows/verify.yml"
+    ],
+    "limitation": "Parsing only. No Docker, Caddy, Compose validation or hosted CI execution."
+  },
+  "standaloneBytes": 363056,
+  "nodeTests": {
+    "passed": 74,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browserChecks": {
+    "originalPassed": 16,
+    "connectedPassed": 13,
+    "mode": "injected",
+    "secureGPUAndIndexedDBVerified": false
+  }
+}

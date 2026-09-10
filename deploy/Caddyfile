@@ -1,0 +1,11 @@
+# Internal HTTP proxy. Host TLS terminates in Caddyfile.example or your ingress.
+:8080 {
+    reverse_proxy api1:4173 api2:4173 {
+        lb_policy round_robin
+        health_uri /api/ready
+        health_interval 10s
+        health_timeout 3s
+        lb_try_duration 5s
+        flush_interval -1
+    }
+}

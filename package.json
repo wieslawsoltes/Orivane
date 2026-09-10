@@ -1,0 +1,24 @@
+{
+  "name": "orivane",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Collaborative canvas with character CRDT, WebGPU rendering, workspaces, OIDC and durable multi-worker rooms",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test tests/*.test.js",
+    "build": "node tools/build.js",
+    "test:browser": "python tests/browser.py",
+    "start:storage": "node server/storage-node.js",
+    "test:browser:connected": "python tests/browser-connected.py",
+    "test:browser:injected": "python tests/browser.py --injected && python tests/browser-connected.py --injected",
+    "test:deployment": "node tools/smoke.js --allow-write",
+    "admin": "node tools/admin.js",
+    "build:pages": "node tools/build-pages.js",
+    "test:pages": "python tests/pages.py"
+  }
+}

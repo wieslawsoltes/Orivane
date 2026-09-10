@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "at": "2026-09-10T18:27:24.887Z",
+  "origin": "null",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/144.0.0.0 Safari/537.36",
+  "checks": [
+    {
+      "name": "Secure context",
+      "status": "unavailable",
+      "detail": "Open the hosted app on HTTPS or localhost for GPU and durable browser storage"
+    },
+    {
+      "name": "Active renderer",
+      "status": "info",
+      "detail": "Canvas 2D: WebGPU unavailable"
+    },
+    {
+      "name": "Document format",
+      "status": "pass",
+      "detail": "orivane/2"
+    },
+    {
+      "name": "IndexedDB durability",
+      "status": "unavailable",
+      "detail": "Memory only; this is not a persistence pass"
+    },
+    {
+      "name": "WebGPU compute/readback",
+      "status": "unavailable",
+      "detail": "No secure-context WebGPU API"
+    },
+    {
+      "name": "Orivane GPU raster/readback",
+      "status": "unavailable",
+      "detail": "Canvas fallback is active; a GPU render pass has not been verified"
+    },
+    {
+      "name": "Touch/stylus hardware",
+      "status": "pending",
+      "detail": "Use the pointer test pad with a physical device. Synthetic events do not certify hardware."
+    }
+  ]
+}

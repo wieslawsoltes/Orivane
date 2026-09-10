@@ -1,0 +1,111 @@
+{
+  "injected": true,
+  "tests": [
+    {
+      "test": "Connected workspace navigation, account/setup state and six tool sections",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Real contenteditable toolbar: Unicode, bold, italic, safe link and collapsed-caret formatting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Live remote text refresh and selective undo preserve the other author\u2019s characters",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Table input syncs per keystroke and reflects remote character operations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Task description is live collaborative text, not a deferred whole-field save",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Native Excalidraw file input previews conversion warnings and applies an undoable import",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Actual .excalidraw/.drawio downloads and XML re-import retain embedded raster assets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Compressed diagrams.net page decoded with the browser\u2019s real deflate-raw implementation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "XML external-entity documents rejected before any mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Environment diagnostics reports actual API availability without claiming skipped checks passed",
+      "passed": true,
+      "detail": [
+        {
+          "name": "Secure context",
+          "status": "unavailable",
+          "detail": "Open the hosted app on HTTPS or localhost for GPU and durable browser storage"
+        },
+        {
+          "name": "Active renderer",
+          "status": "info",
+          "detail": "Canvas 2D: WebGPU unavailable"
+        },
+        {
+          "name": "Document format",
+          "status": "pass",
+          "detail": "orivane/2"
+        },
+        {
+          "name": "IndexedDB durability",
+          "status": "unavailable",
+          "detail": "Memory only; this is not a persistence pass"
+        },
+        {
+          "name": "WebGPU compute/readback",
+          "status": "unavailable",
+          "detail": "No secure-context WebGPU API"
+        },
+        {
+          "name": "Orivane GPU raster/readback",
+          "status": "unavailable",
+          "detail": "Canvas fallback is active; a GPU render pass has not been verified"
+        },
+        {
+          "name": "Touch/stylus hardware",
+          "status": "pending",
+          "detail": "Use the pointer test pad with a physical device. Synthetic events do not certify hardware."
+        }
+      ]
+    },
+    {
+      "test": "Dark connected-tool surfaces stay within the viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Mobile interchange dialog fits a 390-pixel viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No uncaught JavaScript errors in connected desktop/mobile tests",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "skipped": [
+    "Browser account/SSO transport, secure GPU and IndexedDB reload: no navigable secure origin in injected mode",
+    "The normal-origin account/collaboration/reload branch is provided but was not executed here"
+  ],
+  "errors": []
+}

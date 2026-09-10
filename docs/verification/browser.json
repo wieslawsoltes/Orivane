@@ -1,0 +1,121 @@
+{
+  "injected": true,
+  "tests": [
+    {
+      "test": "Boot, original editable discovery board, desktop rendering",
+      "passed": true,
+      "detail": {
+        "gpuAvailable": false,
+        "secureContext": false,
+        "mode": "Canvas 2D",
+        "storage": "Memory only",
+        "objects": 42,
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/144.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "test": "Workspace, ten-template catalog, new blank board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Sticky creation, inline editing, drag, side resize, undo and redo",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Rotation, duplication, select-all, grouping, deletion and recovery",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Connected diagram creation, endpoint reconnection and undo",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Pointer-driven freehand strokes and coalesced-event fallback",
+      "passed": true,
+      "detail": {
+        "samples": 11
+      }
+    },
+    {
+      "test": "Task fields and editable table cells",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Pinned comments, workshop timer and vote allowance UI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Search, dark theme, board preferences and minimap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Frame presentation and keyboard exit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Image import and actual PNG, SVG and editable JSON generation",
+      "passed": true,
+      "detail": {
+        "pngSize": 159015,
+        "pngMagic": [
+          137,
+          80,
+          78,
+          71,
+          13,
+          10,
+          26,
+          10
+        ],
+        "svgValid": true,
+        "format": "orivane/2",
+        "recordCount": 16
+      }
+    },
+    {
+      "test": "Local board serialization and reopening",
+      "passed": true,
+      "detail": {
+        "n": 9,
+        "restored": 9
+      }
+    },
+    {
+      "test": "Two-thousand-object workload and viewport culling",
+      "passed": true,
+      "detail": {
+        "elapsedIncluding300msWait": 792.8999999999069,
+        "stats": {
+          "visible": 40,
+          "total": 2000,
+          "ms": 3,
+          "instances": 160
+        }
+      }
+    },
+    {
+      "test": "No uncaught desktop JavaScript errors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Mobile layout, share dialog, touch pan and pinch zoom",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No uncaught mobile JavaScript errors",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "errors": []
+}

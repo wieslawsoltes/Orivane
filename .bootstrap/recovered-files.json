@@ -1,0 +1,212 @@
+[
+  {
+    "path": ".dockerignore",
+    "bytes": 47,
+    "sha256": "d3264aa3b0c1ca3e7e57f97cc61cede149b8aec168f12a59337241f9a2c535bd"
+  },
+  {
+    "path": ".env.example",
+    "bytes": 1352,
+    "sha256": "5d94ccabef8a796922f99f28aa95a6bcc55cba318b69fe93ec4c1444d6c9b3a2"
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 119,
+    "sha256": "8f29fe6c6f1adfe0ee79e71039c8f8e72f3598ecda0ad1c024f57b0f05c60401"
+  },
+  {
+    "path": "Caddyfile.example",
+    "bytes": 372,
+    "sha256": "2e3a7a7cabc73dc00e7598d1dda0b21518717aa1fd97098d7c6e7f5c4bfd3ee8"
+  },
+  {
+    "path": "Dockerfile",
+    "bytes": 583,
+    "sha256": "219c40ad5d025f04d8296fa4d14aea88d0aa71e2fddb23700bb2d0c65dbc1a2b"
+  },
+  {
+    "path": "LICENSE",
+    "bytes": 1077,
+    "sha256": "997cfb8ce2095ae3059081354e328d5d036a8a2d3ad1bc66533160e03764f6fa"
+  },
+  {
+    "path": "README.md",
+    "bytes": 7672,
+    "sha256": "1194f4931f740c8b023b9dccfd6bded7549c2f6663a2c3ada1e2724f99f74703"
+  },
+  {
+    "path": "SECURITY.md",
+    "bytes": 4313,
+    "sha256": "a885e4687343316d768a204c34934d7a557013f56d861e81d0e015eb2d751eb1"
+  },
+  {
+    "path": "compose.yaml",
+    "bytes": 1968,
+    "sha256": "c70436ab10959d33b23a68f5423cff0b1680b1fadc2403849ec754c59da4f759"
+  },
+  {
+    "path": "deploy/Caddyfile",
+    "bytes": 304,
+    "sha256": "91b38ae471c07810b13a8c92c99e3201d162ee9eb991ceca923b45845d664530"
+  },
+  {
+    "path": "docs/API.md",
+    "bytes": 3852,
+    "sha256": "a9f361f36dac5bc3dd4f6f7db9dece066ae790dd4f573f2aab98aa205e846904"
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "bytes": 8136,
+    "sha256": "da8ab40678cc6312946fb3682a6bbe55d12512024016cece86df1b6a3b260488"
+  },
+  {
+    "path": "docs/CAPABILITIES.md",
+    "bytes": 8032,
+    "sha256": "ebcfb32ecd765c1a5d5c3be302da926cc625a4ac3974b870a1aaed9f76bce90e"
+  },
+  {
+    "path": "docs/DEPLOYMENT.md",
+    "bytes": 4798,
+    "sha256": "c9bfc4556c3d69c58baa21344d7eb1bf914ef6341b03d47a3abc8ced84ee67c0"
+  },
+  {
+    "path": "docs/GITHUB-PAGES.md",
+    "bytes": 2806,
+    "sha256": "1b98cf176ce9fe60b158483da6e7cf89dec73cf04e63fc78ce8494d5f6fdccaf"
+  },
+  {
+    "path": "docs/INTEGRATIONS.md",
+    "bytes": 6520,
+    "sha256": "62edc50488c43e5018bbd9c78a66e2724c6cf32e1854caa26bf9afb6edb04755"
+  },
+  {
+    "path": "docs/OPERATIONS.md",
+    "bytes": 5246,
+    "sha256": "b0b4861aa297fe79dfc9218cc77ed48690e94dc7382e0d7446c3e5f1b70196cd"
+  },
+  {
+    "path": "docs/UPGRADE.md",
+    "bytes": 1823,
+    "sha256": "4df8b5aea2c6e4a9782ba1afe724f6d4ee8a03ca4f9dd2a1be7daa0712bba5fe"
+  },
+  {
+    "path": "docs/VERIFICATION.md",
+    "bytes": 12326,
+    "sha256": "0f82b00f2cc8796feeeb7542cc7bec6e2ebdf6f2e6866be6b87345d620b767b5"
+  },
+  {
+    "path": "docs/verification/browser-connected.json",
+    "bytes": 3404,
+    "sha256": "862875f102f4d34383f5d64637a8aaf45dd871877630d106df2a0d98c25a3ae2"
+  },
+  {
+    "path": "docs/verification/browser-connected.log",
+    "bytes": 1971,
+    "sha256": "8f47b4ef7a90cce67082655cc3fd00ba13eff8b1d5403accf8f0b513c92767a2"
+  },
+  {
+    "path": "docs/verification/browser.json",
+    "bytes": 2846,
+    "sha256": "7d1253d96dfbd57a04a79c1631d233d2a67c2cfd4b575509fc362b0373f72b43"
+  },
+  {
+    "path": "docs/verification/browser.log",
+    "bytes": 1499,
+    "sha256": "d82e61aaf795a7030406e796107cb9c938c5241e36b1ae35228504a7410a381d"
+  },
+  {
+    "path": "docs/verification/deployment-smoke.log",
+    "bytes": 99,
+    "sha256": "1b15f664426bb08ee3df57e1905504f38368b9833f6f99351af9ac88c8703dbd"
+  },
+  {
+    "path": "docs/verification/environment.json",
+    "bytes": 1252,
+    "sha256": "fdd316c4bf79bd778340446028ff022aac413cde2ca1b693d4121de1d943ceb1"
+  },
+  {
+    "path": "docs/verification/node.tap",
+    "bytes": 17046,
+    "sha256": "494f4656a76a56f5dd982f0b17b7fea9039761b4fcaf18cd086efd161ec4731d"
+  },
+  {
+    "path": "docs/verification/original-release-manifest.sha256",
+    "bytes": 7111,
+    "sha256": "bede00375f84f7de8f729cf58db1e9eda29bf46e176956e229eb406b780bc5b6"
+  },
+  {
+    "path": "docs/verification/packaging-checks.json",
+    "bytes": 660,
+    "sha256": "c4e2c44d41b08ded120b935c43f0c9ca98f5e2c4ad8771b0070accd0f4112ee0"
+  },
+  {
+    "path": "package.json",
+    "bytes": 880,
+    "sha256": "a0e9a90c3b1835cb26fd9b373ad918995987b4676e02907ce4a792834d414d36"
+  },
+  {
+    "path": "public/app.css",
+    "bytes": 33375,
+    "sha256": "d6539e806c13289b0094f8a617d3034010c5d72bba5bca8aacacdff366f92b09"
+  },
+  {
+    "path": "public/app.js",
+    "bytes": 90511,
+    "sha256": "6ca1c858df732325e68c220b28e8b19d7bd0e342aafaac5f354b20a773212ebe"
+  },
+  {
+    "path": "public/core/collaboration.js",
+    "bytes": 9309,
+    "sha256": "185f069ada3be0e4decb9983b51b54270d85f9cf613cafa686db4729c80feabc"
+  },
+  {
+    "path": "public/core/editor.js",
+    "bytes": 36275,
+    "sha256": "abd22686896460f7317b02ad0115f3383f27e48b22eb528b8626da0dec1cedef"
+  },
+  {
+    "path": "public/core/export.js",
+    "bytes": 7998,
+    "sha256": "7cf1f986e05ddde0d2d9b9b023ad396d03ae0d9d7554d6efc8962701bfd36144"
+  },
+  {
+    "path": "public/core/geometry.js",
+    "bytes": 7879,
+    "sha256": "e321c7fe31759a33dae9d55364c17af9b22ecd3db91fc377e99de70652eb4672"
+  },
+  {
+    "path": "public/core/history.js",
+    "bytes": 6373,
+    "sha256": "103c7299fc33916f025e23baf07947be995ecaa78980c6e573b5d5d8ebaf4ace"
+  },
+  {
+    "path": "public/core/interchange.js",
+    "bytes": 19787,
+    "sha256": "1dae3ae6a861426719cf2d8156170516ba88fe5d0bbcfcd71ec976fd49905a03"
+  },
+  {
+    "path": "public/core/model.js",
+    "bytes": 19688,
+    "sha256": "858f0e10e4df0bd4056a684019e5e3a470b9231adcd66f5c94760370694a5fb3"
+  },
+  {
+    "path": "public/core/richtext.js",
+    "bytes": 11365,
+    "sha256": "4e3b65af6e25356542928b9125351fe3a912b5732d11e7a197adfec2b22ebccb"
+  },
+  {
+    "path": "public/core/storage.js",
+    "bytes": 3287,
+    "sha256": "f166151ab58801b21817a3bfabcfe400e1dbe6dd3638568e53c428a44752e325"
+  },
+  {
+    "path": "public/core/templates.js",
+    "bytes": 12874,
+    "sha256": "1f9f834217309961432fda3231e34fb5926bd405aba546788ccbf9be4a2bd262"
+  },
+  {
+    "path": "public/enterprise/diagnostics.js",
+    "bytes": 5084,
+    "sha256": "4bf8d328cb761d613aae3ab58f5c3e16b7ffea1694d69480d7392db7d54393a3"
+  }
+]

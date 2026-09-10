@@ -1,0 +1,74 @@
+name: orivane
+x-api: &api
+  build: .
+  image: orivane:0.2
+  init: true
+  restart: unless-stopped
+  env_file: .env
+  environment:
+    HOST: 0.0.0.0
+    PORT: "4173"
+    CLUSTER_STORAGE_URL: http://storage:4174
+    CLUSTER_SECRET: ${CLUSTER_SECRET:?Set a random secret of at least 32 characters in .env}
+    CLUSTER_ALLOW_HTTP: "true"
+    PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:4173}
+  depends_on:
+    storage:
+      condition: service_healthy
+  read_only: true
+  tmpfs:
+    - /tmp
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  stop_grace_period: 40s
+  networks: [backend]
+services:
+  storage:
+    build: .
+    image: orivane:0.2
+    init: true
+    command: ["node", "server/storage-node.js"]
+    restart: unless-stopped
+    environment:
+      STORAGE_HOST: 0.0.0.0
+      STORAGE_PORT: "4174"
+      CLUSTER_DB: /app/data/cluster.sqlite
+      CLUSTER_SECRET: ${CLUSTER_SECRET:?Set a random secret of at least 32 characters in .env}
+    volumes:
+      - storage-data:/app/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4174/health',{headers:{Authorization:'Bearer '+process.env.CLUSTER_SECRET},signal:AbortSignal.timeout(4000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    stop_grace_period: 40s
+    networks: [backend]
+  api1:
+    <<: *api
+  api2:
+    <<: *api
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "${ORIVANE_BIND:-127.0.0.1}:${ORIVANE_PORT:-4173}:8080"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - proxy-data:/data
+      - proxy-config:/config
+    depends_on:
+      api1: {condition: service_healthy}
+      api2: {condition: service_healthy}
+    networks: [backend]
+networks:
+  backend: {}
+volumes:
+  storage-data: {}
+  proxy-data: {}
+  proxy-config: {}

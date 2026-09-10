@@ -1,0 +1,461 @@
+
+> orivane@0.2.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# (node:4878) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: One file-store writer per directory is enforced; stale crashed-process locks are recovered
+ok 1 - One file-store writer per directory is enforced; stale crashed-process locks are recovered
+  ---
+  duration_ms: 77.821004
+  type: 'test'
+  ...
+# Subtest: Offline file backup and migration preserve account/document keys without overwriting targets
+ok 2 - Offline file backup and migration preserve account/document keys without overwriting targets
+  ---
+  duration_ms: 207.689016
+  type: 'test'
+  ...
+# Subtest: Live SQLite backup is a consistent, integrity-checked snapshot of committed WAL state
+ok 3 - Live SQLite backup is a consistent, integrity-checked snapshot of committed WAL state
+  ---
+  duration_ms: 17.820326
+  type: 'test'
+  ...
+# Subtest: Host-administrator password recovery revokes prior sessions and uses a new scrypt hash
+ok 4 - Host-administrator password recovery revokes prior sessions and uses a new scrypt hash
+  ---
+  duration_ms: 1054.107781
+  type: 'test'
+  ...
+# Subtest: Concurrent initializers never acquire the same local store, including stale-lock recovery
+ok 5 - Concurrent initializers never acquire the same local store, including stale-lock recovery
+  ---
+  duration_ms: 20.491159
+  type: 'test'
+  ...
+# Subtest: Failed app configuration releases its local storage writer lock
+ok 6 - Failed app configuration releases its local storage writer lock
+  ---
+  duration_ms: 21.138471
+  type: 'test'
+  ...
+# Subtest: Failed remote migration initialization releases its source writer lock
+ok 7 - Failed remote migration initialization releases its source writer lock
+  ---
+  duration_ms: 9.855343
+  type: 'test'
+  ...
+# Subtest: Real SQLite storage node provides atomic CAS under concurrent network clients and survives a process crash
+ok 8 - Real SQLite storage node provides atomic CAS under concurrent network clients and survives a process crash
+  ---
+  duration_ms: 2574.688342
+  type: 'test'
+  ...
+# Subtest: Two independent API processes synchronize text, presence, identity and revocation without sticky sessions
+ok 9 - Two independent API processes synchronize text, presence, identity and revocation without sticky sessions
+  ---
+  duration_ms: 2996.030026
+  type: 'test'
+  ...
+# Subtest: Storage outage does not acknowledge or partially broadcast an edit; retry after recovery is durable
+ok 10 - Storage outage does not acknowledge or partially broadcast an edit; retry after recovery is durable
+  ---
+  duration_ms: 1238.989905
+  type: 'test'
+  ...
+# Subtest: Concurrent disjoint edits merge without loss
+ok 11 - Concurrent disjoint edits merge without loss
+  ---
+  duration_ms: 36.19319
+  type: 'test'
+  ...
+# Subtest: Concurrent character replacements preserve both contributions and ignore duplicates
+ok 12 - Concurrent character replacements preserve both contributions and ignore duplicates
+  ---
+  duration_ms: 2.28377
+  type: 'test'
+  ...
+# Subtest: Delete tombstone is not undone by an unrelated later update
+ok 13 - Delete tombstone is not undone by an unrelated later update
+  ---
+  duration_ms: 16.314726
+  type: 'test'
+  ...
+# Subtest: History undo/redo restores create, move, delete
+ok 14 - History undo/redo restores create, move, delete
+  ---
+  duration_ms: 4.61065
+  type: 'test'
+  ...
+# Subtest: Undo preserves a remote replacement of the same property
+ok 15 - Undo preserves a remote replacement of the same property
+  ---
+  duration_ms: 5.818484
+  type: 'test'
+  ...
+# Subtest: Undo does not delete a newly-created object modified remotely
+ok 16 - Undo does not delete a newly-created object modified remotely
+  ---
+  duration_ms: 1.400045
+  type: 'test'
+  ...
+# Subtest: Malformed snapshot is atomically rejected
+ok 17 - Malformed snapshot is atomically rejected
+  ---
+  duration_ms: 1.777338
+  type: 'test'
+  ...
+# Subtest: Prototype pollution and untrusted raster URLs rejected
+ok 18 - Prototype pollution and untrusted raster URLs rejected
+  ---
+  duration_ms: 1.409031
+  type: 'test'
+  ...
+# Subtest: Camera zoom keeps cursor anchored in world coordinates
+ok 19 - Camera zoom keeps cursor anchored in world coordinates
+  ---
+  duration_ms: 1.184597
+  type: 'test'
+  ...
+# Subtest: Spatial hash handles large frames and point queries
+ok 20 - Spatial hash handles large frames and point queries
+  ---
+  duration_ms: 4.283837
+  type: 'test'
+  ...
+# Subtest: Attached connectors follow moved nodes and hit testing uses lines
+ok 21 - Attached connectors follow moved nodes and hit testing uses lines
+  ---
+  duration_ms: 1.720164
+  type: 'test'
+  ...
+# Subtest: Every template is composed of valid editable objects with valid attachments
+ok 22 - Every template is composed of valid editable objects with valid attachments
+  ---
+  duration_ms: 59.413681
+  type: 'test'
+  ...
+# Subtest: Two hundred permuted concurrent edits converge
+ok 23 - Two hundred permuted concurrent edits converge
+  ---
+  duration_ms: 44.805567
+  type: 'test'
+  ...
+# Subtest: Accounts hash passwords, use HttpOnly sessions, enforce CSRF, and revoke all sessions
+ok 24 - Accounts hash passwords, use HttpOnly sessions, enforce CSRF, and revoke all sessions
+  ---
+  duration_ms: 941.749764
+  type: 'test'
+  ...
+# Subtest: Private workspace membership is enforced across board HTTP, viewer writes and guest links
+ok 25 - Private workspace membership is enforced across board HTTP, viewer writes and guest links
+  ---
+  duration_ms: 822.866776
+  type: 'test'
+  ...
+# Subtest: JWT signatures validate RSA, PSS and EC, reject nonce/audience/time/algorithm substitution
+ok 26 - JWT signatures validate RSA, PSS and EC, reject nonce/audience/time/algorithm substitution
+  ---
+  duration_ms: 578.757853
+  type: 'test'
+  ...
+# Subtest: OIDC authorization-code flow binds state to browser, verifies PKCE and signed identity, rejects replay
+ok 27 - OIDC authorization-code flow binds state to browser, verifies PKCE and signed identity, rejects replay
+  ---
+  duration_ms: 417.200432
+  type: 'test'
+  ...
+# Subtest: SCIM users and groups provision, filter, update with ETags, and revoke workspace membership
+ok 28 - SCIM users and groups provision, filter, update with ETags, and revoke workspace membership
+  ---
+  duration_ms: 435.868415
+  type: 'test'
+  ...
+# Subtest: Actor secrets prevent collision forgery and reused operation stamps are rejected
+ok 29 - Actor secrets prevent collision forgery and reused operation stamps are rejected
+  ---
+  duration_ms: 44.061051
+  type: 'test'
+  ...
+# Subtest: SCIM cannot deactivate or delete the final workspace owner
+ok 30 - SCIM cannot deactivate or delete the final workspace owner
+  ---
+  duration_ms: 503.598082
+  type: 'test'
+  ...
+# Subtest: Excalidraw native JSON round-trip keeps supported shapes, Unicode labels, bindings, groups, images and pressure
+ok 31 - Excalidraw native JSON round-trip keeps supported shapes, Unicode labels, bindings, groups, images and pressure
+  ---
+  duration_ms: 20.791244
+  type: 'test'
+  ...
+# Subtest: Excalidraw converters report lossy semantics and skip unsupported assets rather than inventing them
+ok 32 - Excalidraw converters report lossy semantics and skip unsupported assets rather than inventing them
+  ---
+  duration_ms: 11.568278
+  type: 'test'
+  ...
+# Subtest: diagrams.net export escapes XML, keeps bound endpoints and embeds raster data safely
+ok 33 - diagrams.net export escapes XML, keeps bound endpoints and embeds raster data safely
+  ---
+  duration_ms: 1.85966
+  type: 'test'
+  ...
+# Subtest: REST board import converts centered geometry and reports unsupported content
+ok 34 - REST board import converts centered geometry and reports unsupported content
+  ---
+  duration_ms: 1.818688
+  type: 'test'
+  ...
+# Subtest: Unrecognized formats and proprietary backups fail with actionable errors
+ok 35 - Unrecognized formats and proprietary backups fail with actionable errors
+  ---
+  duration_ms: 3.084036
+  type: 'test'
+  ...
+# Subtest: OpenAI-compatible and Ollama adapters call real HTTP fixtures, constrain output and require consent
+ok 36 - OpenAI-compatible and Ollama adapters call real HTTP fixtures, constrain output and require consent
+  ---
+  duration_ms: 121.605356
+  type: 'test'
+  ...
+# Subtest: Provider JSON is never code-executed and invalid output leaves the board untouched
+ok 37 - Provider JSON is never code-executed and invalid output leaves the board untouched
+  ---
+  duration_ms: 12.552673
+  type: 'test'
+  ...
+# Subtest: GitHub import/create/update enforces repository allowlists and external-write idempotency
+ok 38 - GitHub import/create/update enforces repository allowlists and external-write idempotency
+  ---
+  duration_ms: 41.123308
+  type: 'test'
+  ...
+# Subtest: Jira search and issue writes use enhanced search API and structured document descriptions
+ok 39 - Jira search and issue writes use enhanced search API and structured document descriptions
+  ---
+  duration_ms: 11.601423
+  type: 'test'
+  ...
+# Subtest: Slack confirms delivery and durable outgoing webhooks have timestamped HMAC signatures
+ok 40 - Slack confirms delivery and durable outgoing webhooks have timestamped HMAC signatures
+  ---
+  duration_ms: 39.663926
+  type: 'test'
+  ...
+# Subtest: Provider network rejects private addresses and redirects unless local services are explicitly configured
+ok 41 - Provider network rejects private addresses and redirects unless local services are explicitly configured
+  ---
+  duration_ms: 7.52296
+  type: 'test'
+  ...
+# Request failed: Configure AI_PROVIDER, AI_BASE_URL and AI_MODEL on the server. No simulated AI is used.
+# Subtest: HTTP provider routes require an account in addition to room edit permission
+ok 42 - HTTP provider routes require an account in addition to room edit permission
+  ---
+  duration_ms: 505.789201
+  type: 'test'
+  ...
+# Subtest: Concurrent insertions at one cursor preserve every Unicode code point
+ok 43 - Concurrent insertions at one cursor preserve every Unicode code point
+  ---
+  duration_ms: 41.588003
+  type: 'test'
+  ...
+# Subtest: Independent concurrent deletion and insertion preserve remote contribution
+ok 44 - Independent concurrent deletion and insertion preserve remote contribution
+  ---
+  duration_ms: 3.626064
+  type: 'test'
+  ...
+# Subtest: Formatting is a per-character register, not a whole-string replacement
+ok 45 - Formatting is a per-character register, not a whole-string replacement
+  ---
+  duration_ms: 3.743491
+  type: 'test'
+  ...
+# Subtest: Formatting undo preserves a concurrent mark of a different kind
+ok 46 - Formatting undo preserves a concurrent mark of a different kind
+  ---
+  duration_ms: 6.234234
+  type: 'test'
+  ...
+# Subtest: IME-basis replacement retains remote insertion received during composition
+ok 47 - IME-basis replacement retains remote insertion received during composition
+  ---
+  duration_ms: 1.355733
+  type: 'test'
+  ...
+# Subtest: Text history uses compensating character IDs and does not erase remote insertions
+ok 48 - Text history uses compensating character IDs and does not erase remote insertions
+  ---
+  duration_ms: 2.62471
+  type: 'test'
+  ...
+# Subtest: Delete-before-insert, duplicate replay and snapshots converge
+ok 49 - Delete-before-insert, duplicate replay and snapshots converge
+  ---
+  duration_ms: 0.989443
+  type: 'test'
+  ...
+# Subtest: Table cells merge at character granularity across independent cells
+ok 50 - Table cells merge at character granularity across independent cells
+  ---
+  duration_ms: 2.312445
+  type: 'test'
+  ...
+# Subtest: Legacy v1 snapshots migrate; styled exports retain marks and Unicode
+ok 51 - Legacy v1 snapshots migrate; styled exports retain marks and Unicode
+  ---
+  duration_ms: 4.205998
+  type: 'test'
+  ...
+# Subtest: Hostile rich text links, cyclic anchors and inconsistent seed snapshots are rejected atomically
+ok 52 - Hostile rich text links, cyclic anchors and inconsistent seed snapshots are rejected atomically
+  ---
+  duration_ms: 2.821917
+  type: 'test'
+  ...
+# Subtest: Shuffled delivery of 120 character operations converges with rich snapshots
+ok 53 - Shuffled delivery of 120 character operations converges with rich snapshots
+  ---
+  duration_ms: 177.650354
+  type: 'test'
+  ...
+# Subtest: An explicit false mark overrides whole-object bold and survives snapshots
+ok 54 - An explicit false mark overrides whole-object bold and survives snapshots
+  ---
+  duration_ms: 1.152085
+  type: 'test'
+  ...
+# Subtest: Restoring text and its rich runs removes newer formatting without a scalar text reset
+ok 55 - Restoring text and its rich runs removes newer formatting without a scalar text reset
+  ---
+  duration_ms: 7.031171
+  type: 'test'
+  ...
+# Subtest: Creation undo does not delete remote character-only work
+ok 56 - Creation undo does not delete remote character-only work
+  ---
+  duration_ms: 1.94697
+  type: 'test'
+  ...
+# Subtest: Creation undo still works after local text edit and its compensating undo
+ok 57 - Creation undo still works after local text edit and its compensating undo
+  ---
+  duration_ms: 1.714514
+  type: 'test'
+  ...
+# Subtest: Rich snapshot missing marks normalizes safely; hostile clocks and duplicates are rejected
+ok 58 - Rich snapshot missing marks normalizes safely; hostile clocks and duplicates are rejected
+  ---
+  duration_ms: 2.049816
+  type: 'test'
+  ...
+# Subtest: History redo restores direct API creations that omitted an explicit deleted flag
+ok 59 - History redo restores direct API creations that omitted an explicit deleted flag
+  ---
+  duration_ms: 1.051036
+  type: 'test'
+  ...
+# Subtest: HTTP app serves static files with CSP and rejects unknown endpoints
+ok 60 - HTTP app serves static files with CSP and rejects unknown endpoints
+  ---
+  duration_ms: 201.150536
+  type: 'test'
+  ...
+# Subtest: Capability tokens authorize editors and enforce view-only on server
+ok 61 - Capability tokens authorize editors and enforce view-only on server
+  ---
+  duration_ms: 126.024422
+  type: 'test'
+  ...
+# Subtest: Two real streaming clients merge concurrent fields and receive presence
+ok 62 - Two real streaming clients merge concurrent fields and receive presence
+  ---
+  duration_ms: 278.779005
+  type: 'test'
+  ...
+# Subtest: Offline edits replay through the durable outbox after reconnect
+ok 63 - Offline edits replay through the durable outbox after reconnect
+  ---
+  duration_ms: 169.378909
+  type: 'test'
+  ...
+# Subtest: Persisted outbox survives a client replacement with the same actor
+ok 64 - Persisted outbox survives a client replacement with the same actor
+  ---
+  duration_ms: 84.945187
+  type: 'test'
+  ...
+# Subtest: Room snapshots persist across server restart without storing plaintext tokens
+ok 65 - Room snapshots persist across server restart without storing plaintext tokens
+  ---
+  duration_ms: 36.428451
+  type: 'test'
+  ...
+# Subtest: Owner rotates invitations; previous editor and viewer tokens are revoked
+ok 66 - Owner rotates invitations; previous editor and viewer tokens are revoked
+  ---
+  duration_ms: 48.082589
+  type: 'test'
+  ...
+# Subtest: Server rejects actor forgery and invalid geometry without changing board
+ok 67 - Server rejects actor forgery and invalid geometry without changing board
+  ---
+  duration_ms: 35.009798
+  type: 'test'
+  ...
+# Subtest: Shared workshop timer, vote cap, comments and reactions propagate
+ok 68 - Shared workshop timer, vote cap, comments and reactions propagate
+  ---
+  duration_ms: 194.809015
+  type: 'test'
+  ...
+# Subtest: Vote limits apply to a whole transaction and reject duplicate targets
+ok 69 - Vote limits apply to a whole transaction and reject duplicate targets
+  ---
+  duration_ms: 62.986157
+  type: 'test'
+  ...
+# Subtest: One participant cannot delete or retag another participant’s vote
+ok 70 - One participant cannot delete or retag another participant’s vote
+  ---
+  duration_ms: 64.013802
+  type: 'test'
+  ...
+# Subtest: Named server versions restore rich text, geometry and removed objects with new stamps
+ok 71 - Named server versions restore rich text, geometry and removed objects with new stamps
+  ---
+  duration_ms: 371.663101
+  type: 'test'
+  ...
+# Subtest: Invalid scalar text, geometry and boolean payloads cannot poison durable snapshots
+ok 72 - Invalid scalar text, geometry and boolean payloads cannot poison durable snapshots
+  ---
+  duration_ms: 1.417574
+  type: 'test'
+  ...
+# Subtest: Audit retention keeps a verifiable prefix anchor while trimming expired metadata
+ok 73 - Audit retention keeps a verifiable prefix anchor while trimming expired metadata
+  ---
+  duration_ms: 0.498747
+  type: 'test'
+  ...
+# Subtest: Accepting a lesser invitation cannot demote the last workspace owner
+ok 74 - Accepting a lesser invitation cannot demote the last workspace owner
+  ---
+  duration_ms: 334.250915
+  type: 'test'
+  ...
+1..74
+# tests 74
+# suites 0
+# pass 74
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7254.413078

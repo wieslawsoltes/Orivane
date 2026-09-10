@@ -1,0 +1,9 @@
+# Set PUBLIC_ORIGIN=https://board.example.com in every API worker.
+# DNS must resolve here, and certificate issuance needs reachable challenge ports.
+# Keep Node/Compose bound to 127.0.0.1:4173. Never publish the storage node.
+board.example.com {
+    header Strict-Transport-Security "max-age=31536000"
+    reverse_proxy 127.0.0.1:4173 {
+        flush_interval -1
+    }
+}
