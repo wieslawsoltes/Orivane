@@ -2,10 +2,10 @@ name: Recover Orivane 0.2 source
 on:
   push:
     branches: [main]
-    paths: ['.bootstrap/**', '.github/workflows/recover-release.yml']
+    paths: ['.github/workflows/recover-release.yml']
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   recover:
     runs-on: ubuntu-latest
@@ -14,15 +14,51 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Inspect interrupted transfer
+      - name: Recover only complete source entries
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
+          import path from 'node:path';
+          import crypto from 'node:crypto';
           import zlib from 'node:zlib';
           const parts = fs.readdirSync('.bootstrap').filter(n => /^chunk-.*\.bin$/.test(n)).sort().map(n => fs.readFileSync('.bootstrap/' + n));
           const partial = zlib.brotliDecompressSync(Buffer.concat(parts), {finishFlush:zlib.constants.BROTLI_OPERATION_FLUSH}).toString('utf8');
-          console.log('Decoded bytes:', Buffer.byteLength(partial));
-          console.log('PAYLOAD PREFIX', JSON.stringify(partial.slice(0, 2000)));
-          console.log('PAYLOAD SUFFIX', JSON.stringify(partial.slice(-1200)));
-          fs.writeFileSync('/tmp/orivane-partial.json', partial);
+          if (!partial.startsWith('{')) throw Error('Unexpected archive structure');
+          let offset = 1;
+          const recovered = [];
+          function readString() {
+            if (partial[offset] !== '"') throw Error('Expected JSON string at ' + offset);
+            const start = offset++;
+            while (offset < partial.length) {
+              const c = partial[offset++];
+              if (c === '\\') { offset++; continue; }
+              if (c === '"') return JSON.parse(partial.slice(start, offset));
+            }
+            return undefined;
+          }
+          while (offset < partial.length) {
+            const name = readString();
+            if (name === undefined) break;
+            if (partial[offset++] !== ':') throw Error('Unexpected separator');
+            const text = readString();
+            if (text === undefined) { console.log('Interrupted file, not restored:', name); break; }
+            if (path.posix.isAbsolute(name) || name.includes('\\') || name.split('/').some(p => p === '..' || p === '.git') || name === '.env') throw Error('Unsafe archive path');
+            if (!name.startsWith('.github/')) {
+              fs.mkdirSync(path.dirname(name), {recursive:true}); fs.writeFileSync(name, text);
+              recovered.push({path:name, bytes:Buffer.byteLength(text), sha256:crypto.createHash('sha256').update(text).digest('hex')});
+            }
+            if (partial[offset] === ',') offset++; else break;
+          }
+          fs.writeFileSync('.bootstrap/recovered-files.json', JSON.stringify(recovered, null, 2));
+          console.log('Recovered complete files:', recovered.map(f => f.path));
+          console.log('Remaining files will be supplied from the original release archive before build and publication.');
           NODE
+      - name: Commit recovered source files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m 'Recover complete Orivane 0.2 source entries from interrupted upload'
+            git push origin HEAD:main
+          fi
