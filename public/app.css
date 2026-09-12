@@ -93,3 +93,10 @@ body.dark .ai-node-grid article { background:#3e344d;color:#ebdff7 }
 @media(max-width:520px) { .connected-two{grid-template-columns:1fr;gap:18px}.connected-hero{align-items:start;padding:2px 0 20px}.connected-symbol{flex-basis:43px;height:43px;border-radius:13px;font-size:37px;line-height:35px}.connected-eyebrow{font-size:8px}.connected-hero h3{font-size:16px}.connected-hero p{font-size:11px}.connected-section-head{align-items:start;gap:12px;flex-direction:column}.connection-grid,.connected-space-grid{gap:10px}.connection-card{padding:15px}.connection-card .connection-state{font-size:9px;white-space:normal}.ai-node-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.connected-members>div{gap:8px}.diagnostic-status{min-width:67px}.diagnostic-list>div{gap:10px}.connected-consent{font-size:11px} }
 
 .connected-empty > svg { margin: 0 auto 20px; }
+
+.locale-toggle {
+  min-width: 42px;
+  padding-inline: 10px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}

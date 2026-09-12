@@ -31,6 +31,12 @@ Click **Workspace** in the board header. The connected interface contains Worksp
 
 The server binds to loopback by default. For another device, deploy behind HTTPS and set `PUBLIC_ORIGIN` to the reachable origin. A localhost invitation is not a remotely reachable address. Static hosting and the standalone HTML support local editing but do not supply the collaboration/identity/provider backend.
 
+## Language
+
+Orivane automatically uses Simplified Chinese when the browser language starts with `zh`; other browser locales continue to use English. Use the **中文 / EN** button in the board header to switch languages. The preference is stored locally in the browser.
+
+The localization covers application controls, menus, dialogs, status messages and accessibility labels. User-authored board content is never translated automatically.
+
 ## What changed in 0.2
 
 | Area | Delivered implementation |

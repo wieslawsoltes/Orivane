@@ -1,3 +1,4 @@
+import { initI18n } from './i18n.js';
 import { bindPlainEditor } from './ui/plain-editor.js';
 import { importBoardFile } from './core/interchange.js';
 import { ConnectedWorkspace } from './enterprise/workspace.js';
@@ -16,6 +17,7 @@ const palette = ['#fff0a6', '#ffdce3', '#e8ddff', '#dce9ff', '#ddf1e5', '#ffe2bd
 const tools = [['select', 'Select', 'V'], ['hand', 'Pan', 'H'], null, ['sticky', 'Sticky note', 'N'], ['text', 'Text', 'T'], ['shapes', 'Shapes', 'S'], ['connector', 'Connector', 'C'], ['pen', 'Draw', 'P'], ['frame', 'Frame', 'F'], ['comment', 'Comment', 'M'], null, ['image', 'Upload', ''], ['more-tools', 'More tools', '']];
 export class OrivaneApp {
     async init() {
+        await initI18n();
         this.storage = await new BoardStorage().open();
         this.actor = sessionStore.getItem('orivane-actor') || uid('actor');
         sessionStore.setItem('orivane-actor', this.actor);
